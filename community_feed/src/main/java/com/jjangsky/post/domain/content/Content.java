@@ -14,4 +14,6 @@ public abstract class Content {
     public String getContentText() {
         return contentText;
     }
+
+
 }
