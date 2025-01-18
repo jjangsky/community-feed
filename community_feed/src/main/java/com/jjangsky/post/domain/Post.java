@@ -1,5 +1,6 @@
 package com.jjangsky.post.domain;
 
+import com.jjangsky.post.domain.content.PostContent;
 import com.jjangsky.user.domain.User;
 
 public class Post {

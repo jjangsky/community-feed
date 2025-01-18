@@ -1,4 +1,4 @@
-package com.jjangsky.post.domain;
+package com.jjangsky.post.domain.content;
 
 import com.jjangsky.post.domain.content.Content;
 
@@ -13,7 +13,7 @@ public class PostContent extends Content {
 
     @Override
     protected void checkText(String contentText) {
-        // 검증 로직은 재정의함 
+        // 검증 로직은 재정의함
         if (contentText == null || contentText.isEmpty()) {
             throw new IllegalArgumentException();
         }
