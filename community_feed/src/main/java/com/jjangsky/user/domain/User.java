@@ -6,11 +6,46 @@ public class User {
 
     private final Long id;
     private final UserInfo info;
+    private final UserRelationCounter followingCount;
+    private final UserRelationCounter followerCounter;
 
-    public User(Long id, String name, UserInfo userInfo) {
+    public User(Long id, UserInfo info, UserRelationCounter followingCount, UserRelationCounter followerCounter) {
         this.id = id;
-        this.info = userInfo;
+        this.info = info;
+        this.followingCount = new UserRelationCounter();
+        this.followerCounter = new UserRelationCounter();
     }
+
+    public void follow(User targetUser) {
+        /**
+         *  팔로우 행위가 일어날 경우 본인 팔로잉 +1
+         *  팔로우 한 사람 입장에서는 팔로워 +1
+         */
+        if (targetUser.equals(this)) {
+            throw new IllegalArgumentException();
+        }
+
+        followingCount.increase();
+        targetUser.increaseFollowerCount();
+    }
+
+    public void unfollow(User targetUser) {
+        if (targetUser.equals(this)) {
+            throw new IllegalArgumentException();
+        }
+
+        followingCount.decrease();
+        targetUser.decreaseFollowerCount();
+    }
+
+    private void increaseFollowerCount() {
+        followingCount.increase();
+    }
+
+    private void decreaseFollowerCount() {
+        followerCounter.decrease();
+    }
+
 
     /**
      * 사용자에 대해서 해쉬코드 값 비교가 아닌 단순 Id 값으로 비교 예정
