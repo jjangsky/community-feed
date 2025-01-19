@@ -4,6 +4,10 @@ public class PositiveIntegerCounter {
 
     private int count;
 
+    public int getCount() {
+        return count;
+    }
+
     public PositiveIntegerCounter() {
         this.count = 0;
     }
