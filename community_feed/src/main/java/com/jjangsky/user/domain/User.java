@@ -8,6 +8,19 @@ public class User {
 
     private final Long id;
     private final UserInfo info;
+
+    public Long getId() {
+        return id;
+    }
+
+    public int followerCount() {
+        return followerCounter.getCount();
+    }
+
+    public int followingCount() {
+        return followingCount.getCount();
+    }
+
     private final PositiveIntegerCounter followingCount;
     private final PositiveIntegerCounter followerCounter;
 
