@@ -62,7 +62,7 @@ public class User {
     }
 
     private void increaseFollowerCount() {
-        followingCount.increase();
+        followerCounter.increase();
     }
 
     private void decreaseFollowerCount() {
