@@ -9,6 +9,10 @@ public class User {
     private final Long id;
     private final UserInfo info;
 
+    public UserInfo getInfo() {
+        return info;
+    }
+
     public Long getId() {
         return id;
     }
