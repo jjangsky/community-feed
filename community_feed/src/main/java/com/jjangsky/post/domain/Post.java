@@ -34,6 +34,11 @@ public class Post {
         likeCount.increase();
     }
 
+    public PositiveIntegerCounter getLikeCount() {
+        return likeCount;
+    }
+
+
     public void unlike () {
         likeCount.decrease();
     }
@@ -44,7 +49,26 @@ public class Post {
         }
 
         this.state = state;
-        this.content.updatecontent(updateContent);
+        this.content.updateContent(updateContent);
+    }
+
+    public PostContent getContent() {
+        return content;
+    }
+
+    public void updateContent(User user, String content) {
+        if (!author.equals(user)) {
+            throw new IllegalArgumentException("only author can update content");
+        }
+        this.content.updateContent(content);
+    }
+
+    public void updateState(PostPublicationState state) {
+        this.state = state;
+    }
+
+    public PostPublicationState getState() {
+        return state;
     }
 
 

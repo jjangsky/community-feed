@@ -51,6 +51,6 @@ public class Comment {
             throw new IllegalArgumentException();
         }
 
-        this.content.updatecontent(updatecontent);
+        this.content.updateContent(updatecontent);
     }
 }
