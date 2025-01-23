@@ -1,6 +1,7 @@
 package com.jjangsky.post.domain;
 
 import com.jjangsky.common.domain.PositiveIntegerCounter;
+import com.jjangsky.post.domain.content.Content;
 import com.jjangsky.post.domain.content.PostContent;
 import com.jjangsky.post.domain.content.PostPublicationState;
 import com.jjangsky.user.domain.User;
@@ -9,12 +10,16 @@ public class Post {
 
     private final Long id;
     private final User author;
-    private final PostContent content;
+    private final Content content;
     private final PositiveIntegerCounter likeCount;
 
     private PostPublicationState state;
 
-    public Post(Long id, User author, PostContent content) {
+    public Post(Long id, User author, Content content) {
+        this(id, author, content, PostPublicationState.PUBLIC);
+    }
+
+    public Post(Long id, User author, Content content, PostPublicationState state) {
         if(author == null){
             throw new IllegalArgumentException();
         }
@@ -23,7 +28,7 @@ public class Post {
         this.author = author;
         this.content = content;
         this.likeCount = new PositiveIntegerCounter();
-        this.state = PostPublicationState.PUBLIC;
+        this.state = state;
     }
 
     public void like (User user ) {
@@ -52,7 +57,7 @@ public class Post {
         this.content.updateContent(updateContent);
     }
 
-    public PostContent getContent() {
+    public Content getContent() {
         return content;
     }
 
