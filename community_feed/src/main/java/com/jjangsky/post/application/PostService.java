@@ -1,7 +1,7 @@
 package com.jjangsky.post.application;
 
 import com.jjangsky.post.application.dto.CreatePostRequestDto;
-import com.jjangsky.post.application.dto.LikePostRequestDto;
+import com.jjangsky.post.application.dto.LikeRequestDto;
 import com.jjangsky.post.application.interfaces.LikeRepository;
 import com.jjangsky.post.application.interfaces.PostRepository;
 import com.jjangsky.post.domain.Post;
@@ -43,8 +43,8 @@ public class PostService {
         return postRepository.save(post);
     }
 
-    public void likePost(LikePostRequestDto dto){
-        Post post = getPost(dto.postId());
+    public void likePost(LikeRequestDto dto){
+        Post post = getPost(dto.targetId());
         User user = userService.getUser(dto.userId());
 
         // 좋아요를 누루기 전에 이미 좋아요를 누른 경우를 확인해야 한다.
@@ -56,8 +56,8 @@ public class PostService {
         likeRepository.like(post, user);
     }
 
-    public void unlikePost(LikePostRequestDto dto){
-        Post post = getPost(dto.postId());
+    public void unlikePost(LikeRequestDto dto){
+        Post post = getPost(dto.targetId());
         User user = userService.getUser(dto.userId());
 
         // 좋아요를 누른 경우에만 좋아요를 취소할 수 있다.
