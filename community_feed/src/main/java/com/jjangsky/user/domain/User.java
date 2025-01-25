@@ -1,13 +1,25 @@
 package com.jjangsky.user.domain;
 
 import com.jjangsky.common.domain.PositiveIntegerCounter;
+import jakarta.persistence.Embedded;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.util.Objects;
 
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class User {
 
-    private final Long id;
-    private final UserInfo info;
+    private  Long id;
+    private  UserInfo info;
+    private  PositiveIntegerCounter followingCount;
+    private  PositiveIntegerCounter followerCounter;
 
     public UserInfo getInfo() {
         return info;
@@ -24,9 +36,6 @@ public class User {
     public int followingCount() {
         return followingCount.getCount();
     }
-
-    private final PositiveIntegerCounter followingCount;
-    private final PositiveIntegerCounter followerCounter;
 
     public User(Long id, UserInfo info) {
         if(info == null) {
@@ -61,6 +70,14 @@ public class User {
         targetUser.decreaseFollowerCount();
     }
 
+    public String getProfileImage() {
+        return info.getProfileImageUrl();
+    }
+
+    public String getName() {
+        return info.getName();
+    }
+
     private void increaseFollowerCount() {
         followerCounter.increase();
     }
@@ -68,6 +85,10 @@ public class User {
     private void decreaseFollowerCount() {
         followerCounter.decrease();
     }
+
+
+
+
 
 
     /**

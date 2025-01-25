@@ -1,13 +1,13 @@
 package com.jjangsky.user.domain;
 
+import lombok.Getter;
+
+@Getter
 public class UserInfo {
 
     private final String name;
     private final String profileImageUrl;
 
-    public String getName() {
-        return name;
-    }
 
     public UserInfo(String name, String profileImageUrl) {
         if(name == null || name.isEmpty()){
