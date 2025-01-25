@@ -39,8 +39,8 @@ public class Post {
         likeCount.increase();
     }
 
-    public PositiveIntegerCounter getLikeCount() {
-        return likeCount;
+    public int getLikeCount() {
+        return likeCount.getCount();
     }
 
 
@@ -61,11 +61,17 @@ public class Post {
         return content;
     }
 
-    public void updateContent(User user, String content) {
+    public void updateContent(User user, String content, PostPublicationState state) {
         if (!author.equals(user)) {
             throw new IllegalArgumentException("only author can update content");
         }
+
+        if (state == null) {
+            state = PostPublicationState.PUBLIC;
+        }
+
         this.content.updateContent(content);
+        this.state = state;
     }
 
     public void updateState(PostPublicationState state) {

@@ -1,10 +1,13 @@
 package com.jjangsky.post.domain.common;
 
+import lombok.Getter;
+
 import java.time.LocalDateTime;
 
 public class DatetimeInfo {
 
     private boolean isEdited;
+    @Getter
     private LocalDateTime dateTime;
 
     public DatetimeInfo() {
@@ -12,13 +15,9 @@ public class DatetimeInfo {
         this.dateTime = LocalDateTime.now();
     }
 
-    public void updateEditDatetime( ){
+    public void updateEditDatetime() {
         this.isEdited = true;
         this.dateTime = LocalDateTime.now();
-    }
-
-    public LocalDateTime getDateTime() {
-        return dateTime;
     }
 
     public boolean isEdited() {
