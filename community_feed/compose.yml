@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: mysql-container
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: example_db           # 생성할 기본 데이터베이스
+      MYSQL_USER: user                     # 생성할 사용자 이름
+      MYSQL_PASSWORD: user_password        # 생성할 사용자 비밀번호
+    ports:
+      - "3308:3308"                        # 호스트와 컨테이너의 포트 매핑
+    volumes:
+      - mysql_data:/var/lib/mysql          # 데이터가 삭제되지 않도록 볼륨 마운트
+
+volumes:
+  mysql_data:

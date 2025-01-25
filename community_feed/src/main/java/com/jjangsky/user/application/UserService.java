@@ -4,7 +4,9 @@ import com.jjangsky.user.application.dto.CreateUserRequestDto;
 import com.jjangsky.user.application.interfaces.UserRepository;
 import com.jjangsky.user.domain.User;
 import com.jjangsky.user.domain.UserInfo;
+import org.springframework.stereotype.Service;
 
+@Service
 public class UserService {
 
     private final UserRepository userRepository;
