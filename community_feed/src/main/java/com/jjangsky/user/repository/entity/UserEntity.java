@@ -1,6 +1,7 @@
 package com.jjangsky.user.repository.entity;
 
 import com.jjangsky.common.domain.PositiveIntegerCounter;
+import com.jjangsky.common.repository.entity.TimeBaseEntity;
 import com.jjangsky.user.domain.User;
 import com.jjangsky.user.domain.UserInfo;
 import jakarta.persistence.*;
@@ -13,7 +14,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Getter
 @Table(name = "community_user")
-public class UserEntity {
+public class UserEntity extends TimeBaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
