@@ -5,10 +5,7 @@ import com.jjangsky.user.application.UserService;
 import com.jjangsky.user.application.dto.CreateUserRequestDto;
 import com.jjangsky.user.domain.User;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user")
@@ -21,5 +18,11 @@ public class UserController {
     public Response<Long> createUser(@RequestBody CreateUserRequestDto dto) {
         User user = userService.createUser(dto);
         return Response.ok(user.getId());
+    }
+
+    @GetMapping("/{userId}")
+    public Response<User> getUser(@PathVariable Long userId) {
+        User user = userService.getUser(userId);
+        return Response.ok(user);
     }
 }

@@ -1,6 +1,7 @@
 package com.jjangsky.user.application;
 
 import com.jjangsky.user.application.dto.CreateUserRequestDto;
+import com.jjangsky.user.application.dto.GetUserResponseDto;
 import com.jjangsky.user.application.interfaces.UserRepository;
 import com.jjangsky.user.domain.User;
 import com.jjangsky.user.domain.UserInfo;
@@ -23,5 +24,10 @@ public class UserService {
 
     public User getUser(Long id) {
         return userRepository.findById(id);
+    }
+
+    public GetUserResponseDto getUserProfile(Long id) {
+        User user = userRepository.findById(id);
+        return new GetUserResponseDto(user);
     }
 }

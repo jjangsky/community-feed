@@ -3,7 +3,9 @@ package com.jjangsky.user.application;
 import com.jjangsky.user.application.dto.FollowUserRequestDto;
 import com.jjangsky.user.application.interfaces.UserRelationRepository;
 import com.jjangsky.user.domain.User;
+import org.springframework.stereotype.Service;
 
+@Service
 public class UserRelationService {
 
     private final UserService userService;
