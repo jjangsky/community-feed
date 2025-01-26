@@ -1,7 +1,9 @@
 package com.jjangsky.post.domain.content;
 
 import com.jjangsky.post.domain.common.DatetimeInfo;
+import lombok.Getter;
 
+@Getter
 public abstract class Content {
 
     String contentText;

@@ -24,6 +24,17 @@ public class UserEntity extends TimeBaseEntity {
     private Integer followerCount;
     private Integer followingCount;
 
+    /**
+     * OneToMany 에서는 지연 로딩이 default 값으로 설정되어
+     * 해당 필드가 사용될 때 까지 데이터를 가져오지 않는다.
+     *
+     * 하지만, 데이터가 많아질 수록 성능에 영향을 줄 수 있기 때문에
+     *      -> 해당 데이터를 다 자바 객체로 만들어 놓기 때문에
+     * 실무에서는 잘 사용하지 않는다.
+     */
+//    @OneToMany
+//    private List<PostEntity> posts;
+
     public UserEntity(User user) {
         this.id = user.getId();
         this.name = user.getName();

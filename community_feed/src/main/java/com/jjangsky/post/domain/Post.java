@@ -5,30 +5,42 @@ import com.jjangsky.post.domain.content.Content;
 import com.jjangsky.post.domain.content.PostContent;
 import com.jjangsky.post.domain.content.PostPublicationState;
 import com.jjangsky.user.domain.User;
+import lombok.Builder;
+import lombok.Getter;
 
+@Getter
 public class Post {
 
     private final Long id;
     private final User author;
+    @Getter
     private final Content content;
-    private final PositiveIntegerCounter likeCount;
 
     private PostPublicationState state;
+    private final PositiveIntegerCounter likeCount;
 
     public Post(Long id, User author, Content content) {
-        this(id, author, content, PostPublicationState.PUBLIC);
+        this(id, author, content, PostPublicationState.PUBLIC, new PositiveIntegerCounter());
     }
 
-    public Post(Long id, User author, Content content, PostPublicationState state) {
-        if(author == null){
-            throw new IllegalArgumentException();
+    public Post(Long id, User author, String content) {
+        this(id, author, new PostContent(content), PostPublicationState.PUBLIC, new PositiveIntegerCounter());
+    }
+
+    @Builder
+    public Post(Long id, User author, Content content, PostPublicationState state, PositiveIntegerCounter positiveIntegerCounter) {
+        if (author == null) {
+            throw new IllegalArgumentException("author should not be null");
+        }
+        if (content == null) {
+            throw new IllegalArgumentException("content should not be null or empty");
         }
 
         this.id = id;
         this.author = author;
         this.content = content;
-        this.likeCount = new PositiveIntegerCounter();
         this.state = state;
+        this.likeCount = positiveIntegerCounter;
     }
 
     public void like (User user ) {
@@ -57,10 +69,6 @@ public class Post {
         this.content.updateContent(updateContent);
     }
 
-    public Content getContent() {
-        return content;
-    }
-
     public void updateContent(User user, String content, PostPublicationState state) {
         if (!author.equals(user)) {
             throw new IllegalArgumentException("only author can update content");
@@ -78,9 +86,11 @@ public class Post {
         this.state = state;
     }
 
-    public PostPublicationState getState() {
-        return state;
+    public String getContentText() {
+        return content.getContentText();
     }
+
+
 
 
 }

@@ -1,4 +1,6 @@
 package com.jjangsky.post.application.dto;
 
-public record UpdatePostRequestDto(Long postId, Long userId, String content, String state) {
+import com.jjangsky.post.domain.content.PostPublicationState;
+
+public record UpdatePostRequestDto(Long postId, Long userId, String content, PostPublicationState state) {
 }

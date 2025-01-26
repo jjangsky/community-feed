@@ -5,7 +5,13 @@ import com.jjangsky.post.domain.Post;
 import com.jjangsky.post.domain.content.CommentContent;
 import com.jjangsky.post.domain.content.Content;
 import com.jjangsky.user.domain.User;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
 
+@Getter
+@AllArgsConstructor
+@Builder
 public class Comment {
 
     private final Long id;
@@ -57,5 +63,13 @@ public class Comment {
         }
 
         this.content.updateContent(updatecontent);
+    }
+
+    public String getContentText() {
+        return content.getContentText();
+    }
+
+    public int getLikeCount() {
+        return likeCount.getCount();
     }
 }
