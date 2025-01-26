@@ -1,4 +1,4 @@
-package com.jjangsky.user;
+package com.jjangsky;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
