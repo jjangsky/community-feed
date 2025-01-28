@@ -37,7 +37,7 @@ public class UserRelationRepositoryImpl implements UserRelationRepository {
     @Override
     @Transactional
     public void delete(User user, User targetUser) {
-        UserRelationEntity id = new UserRelationEntity(user.getId(), targetUser.getId());
+        UserRelationIdEntity id = new UserRelationIdEntity(user.getId(), targetUser.getId());
         jpaUserRelationRepository.deleteById(id);
 
         // 삭제의 경우 서비스 레이어에서 변경이 처리가 완료 되어
