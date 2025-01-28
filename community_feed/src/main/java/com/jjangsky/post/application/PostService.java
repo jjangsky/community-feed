@@ -31,11 +31,11 @@ public class PostService {
     public Post createPost(CreatePostRequestDto dto) {
         User author = userService.getUser(dto.userId());
         Post post = new Post(null, author, dto.content());
-        return postRepository.publish(post);
+        return postRepository.save(post);
     }
 
-    public Post updatePost(UpdatePostRequestDto dto) {
-        Post post = getPost(dto.postId());
+    public Post updatePost(Long postId, UpdatePostRequestDto dto) {
+        Post post = getPost(postId);
         User user = userService.getUser(dto.userId());
 
         post.updateContent(user, dto.content(), dto.state());
