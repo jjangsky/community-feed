@@ -9,7 +9,9 @@ import com.jjangsky.post.domain.Post;
 import com.jjangsky.post.domain.comment.Comment;
 import com.jjangsky.user.application.UserService;
 import com.jjangsky.user.domain.User;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CommentService {
 
     private final LikeRepository likeRepository;
@@ -36,8 +38,8 @@ public class CommentService {
         return commentRepository.save(comment);
     }
 
-    public Comment updateComment(UpdateCommentRequestDto dto) {
-        Comment comment = getComment(dto.commentId());
+    public Comment updateComment(Long commentId, UpdateCommentRequestDto dto) {
+        Comment comment = getComment(commentId);
         User user = userService.getUser(dto.userId());
 
         comment.updateComment(user, dto.content());

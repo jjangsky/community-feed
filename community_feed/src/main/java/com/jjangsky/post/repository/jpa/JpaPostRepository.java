@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface JpaPostRepository extends JpaRepository<PostEntity, Long> {
     @Modifying
-    @Query(value = "UPDATE PostEntity p SET p.likeCounter = :#{#postEntity.likeCounter}, p.upDt = now() WHERE p.id = #{#postEntity.id}")
+    @Query(value = "UPDATE PostEntity p SET p.likeCounter = :#{#postEntity.likeCounter}, p.upDt = now() WHERE p.id = :#{#postEntity.id}")
     void updateLikeCount(PostEntity postEntity);
 }
