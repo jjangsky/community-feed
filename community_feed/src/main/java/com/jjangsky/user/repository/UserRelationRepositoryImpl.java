@@ -1,5 +1,6 @@
 package com.jjangsky.user.repository;
 
+import com.jjangsky.post.repository.jpa.post_queue.UserPostQueueCommandRepository;
 import com.jjangsky.user.application.interfaces.UserRelationRepository;
 import com.jjangsky.user.application.interfaces.UserRepository;
 import com.jjangsky.user.domain.User;
@@ -20,6 +21,7 @@ public class UserRelationRepositoryImpl implements UserRelationRepository {
 
     private final JpaUserRelationRepository jpaUserRelationRepository;
     private final JpaUserRepository jpaUserRepository;
+    private final UserPostQueueCommandRepository userPostQueueRepository;
     @Override
     public boolean isAlreadyFollow(User user, User targetUser) {
         UserRelationIdEntity id = new UserRelationIdEntity(user.getId(), targetUser.getId());
@@ -32,6 +34,7 @@ public class UserRelationRepositoryImpl implements UserRelationRepository {
         UserRelationEntity entity = new UserRelationEntity(user.getId(), targetUser.getId());
         jpaUserRelationRepository.save(entity);
         jpaUserRepository.saveAll(List.of(new UserEntity(user), new UserEntity(targetUser)));
+        userPostQueueRepository.saveFollowPost(user.getId(), targetUser.getId());
     }
 
     @Override
@@ -43,5 +46,6 @@ public class UserRelationRepositoryImpl implements UserRelationRepository {
         // 삭제의 경우 서비스 레이어에서 변경이 처리가 완료 되어
         // 해당 레이어에서는 변경된 부분을 저장하기만 하면 됨
         jpaUserRepository.saveAll(List.of(new UserEntity(user), new UserEntity(targetUser)));
+        userPostQueueRepository.deleteUnfollowPost(user.getId(), targetUser.getId());
     }
 }
